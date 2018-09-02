@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>Index</title>
+    <script>
+
+        var parts = window.location.search.substr(1).split("&");
+        var $_GET = {};
+        for (var i = 0; i < parts.length; i++) {
+            var temp = parts[i].split("=");
+            $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+        }
+
+    </script>
+</head>
+<body>
+<h1>Index</h1>
+<p>Dies ist die DiscordBot Index Seite!</p>
+<br><br><br>
+<div style="background-color:lightgray;border:thin solid lightblue;border-radius:8px;">
+    <h2>Broadcast</h2>
+    <input type="text" id="broadcast_input">
+    <button onclick="sendbroadcast(document.getElementById('broadcast_input').value)">Senden</button>
+</div>
+</body>
+<script>
+var connection = new WebSocket('ws://' + window.location.hostname + ':8083');
+
+    connection.onopen = function () {
+    console.log('Connected!');
+    if($_GET['action'] == "broadcast"){
+        connection.send($_GET['message']);
+    }
+
+    };
+
+    // Log errors
+    connection.onerror = function (error) {
+    console.log('WebSocket Error ' + error);
+    };
+
+    // Log messages from the server
+    connection.onmessage = function (e) {
+    console.log('Server: ' + e.data);
+    };
+
+function sendbroadcast(message){
+  window.location='/index.html?action=broadcast&message=' + message;
+}
+</script>
+</html>
