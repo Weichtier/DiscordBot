@@ -25,7 +25,7 @@ public class Main {
     private static LineReader reader;
     private static WebServer webServer;
     private static WebsocketServer websocket;
-    private static String version = "v1.0.0";
+    private static String version = "v1.2.9";
 
     public static void main(String[] args) throws IOException {
 

@@ -15,7 +15,7 @@
         </repository>
         <repository>
             <id>jcenter</id>
-            <name>JCenter</name>
+            <name>jcenter</name>
             <url>https://jcenter.bintray.com</url>
         </repository>
     </repositories>
